@@ -1,12 +1,19 @@
+let poemSubmitter = document.getElementById('poem-input');
 let poemLinesWrapper = document.getElementById('poem-lines');
 let poemLinesChildren = poemLinesWrapper.querySelectorAll('span');
+
+let addAnotherPoemBtn = document.getElementById('add-poem');
+let submitButton = document.getElementById('submit-poems');
 
 let poemOne = "Hey there + my name is + jonas mccoolster + whats yours?";
 let poemTwo = "Greetings + i am called + james corvich + and your title is?";
 let poemThree = "Salutations + my birth name is + eric alas + its a pleasure to meet you...";
 let poemFour =  "Hello there sailor + i am known as + usidore the blue + do you have a name?";
 
+let submittedPoems = [];
+
 let numberOfPoems = 4;
+
 //this is how many poems there are
 let poems = new Array(numberOfPoems);
 
@@ -20,22 +27,29 @@ let styles = {
 
 
 function splitPoems(){
-	let poemOneSplit 	= poemOne.split(" + ");
-	let poemTwoSplit 	= poemTwo.split(" + ");
-	let poemThreeSplit 	= poemThree.split(" + ");
-	let poemFourSplit 	= poemFour.split(" + ");
-	for(let i = 0 ; i < poemOneSplit.length; ++i){
-		//this is how many poems there are
-		poems[i] = new Array(numberOfPoems);
-		poems[i][0] = poemOneSplit[i];
-		poems[i][1] = poemTwoSplit[i]; 
-		poems[i][2] = poemThreeSplit[i]; 
-		poems[i][3] = poemFourSplit[i]; 
+	let poemsSplit = [];
+
+	for(let poemNumber = 0; poemNumber < submittedPoems.length; ++poemNumber){
+		poemsSplit.push(submittedPoems[poemNumber].split(" + "))
 	}
+	
+ 	for(let j = 0 ; j < poemsSplit.length; ++j){
+	 	poems[j] = new Array(numberOfPoems)
+	 	
+	 	for(let k = 0; k < poemsSplit[j].length; ++k){
+		 	poems[j][k] = poemsSplit[k][j]
+	 	}
+ 	}
+
 
 };
 
 function initilizePoems(){
+	//hide poem input box to begin intilizing the poems
+	//using jQuery for browser support
+	$("#poem-input").hide();
+	$("#poem-lines").show();
+	
 	for(let i = 0; i < poemLinesChildren.length; ++i){
 		let poemLineNumber = poemLinesChildren[i].getAttribute("data-line");
 		poemLinesChildren[i].addEventListener("mouseover", hoverHandler(poemLineNumber));
@@ -65,8 +79,25 @@ var hoverHandler = function(poemLineNumber){
 
 
 function init(){
-	splitPoems();
-	initilizePoems();
+	//hide the poem display
+	$("#poem-lines").hide();
+	
+	
+	let poem = document.getElementById('poem-writing');
+	
+	
+	addAnotherPoemBtn.addEventListener("click", () => {
+		submittedPoems.push(poem.value);
+		poem.value = "";
+	});
+	
+	submitButton.addEventListener("click", () => {
+		submittedPoems.push(poem.value);
+		poem.value = "";
+		splitPoems();
+		initilizePoems();
+	});
+	
 }
 
 

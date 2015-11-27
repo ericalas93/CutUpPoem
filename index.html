@@ -4,9 +4,22 @@
 		<meta charset="utf-8">
 		<title>Cut-Up Poem</title>
 		<script src="node_modules/babel-polyfill/dist/polyfill.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	</head>
 	
 	<body>
+		
+		
+		<div class = "poem-input">
+			<label>Enter a poem:</label><br />
+			<textarea id = "poem-writing" rows="10" cols="40"></textarea>
+			<br />
+			<button id = "add-poem">Add another poem</button>
+			<button id = "submit-poems">Submit all poems</button>
+		</div>
+		
+		<br />
+		
 		<div id = "poem-lines">
 			<span data-line = "1"></span><br />
 			<span data-line = "2"></span><br />
@@ -14,6 +27,11 @@
 			<span data-line = "4"></span><br />
 		</div>
 		
+		<br />
+		Hey there + my name is + jonas mccoolster + whats yours? <br />
+		Greetings + i am called + james corvich + and your title is?<br />
+		Salutations + my birth name is + eric alas + its a pleasure to meet you... <br />
+		Hello there sailor + i am known as + usidore the blue + do you have a name?
 		<script type="text/javascript" src="src/bundle.js"></script>
 	</body>
 </html>
