@@ -1,5 +1,6 @@
 let poemSubmitter = document.getElementById('poem-input');
 let poemLinesWrapper = document.getElementById('poem-lines');
+let resetPoems = document.getElementById('reset-poems');
 
 let addAnotherPoemBtn = document.getElementById('add-poem');
 let submitButton = document.getElementById('submit-poems');
@@ -7,7 +8,6 @@ let submitButton = document.getElementById('submit-poems');
 let submittedPoems = [];
 let numberOfPoems = 0;
 let poems = [];
-
 
 /*
 	This function takes all the submitted poems, splits them and stores them into a 1D array
@@ -147,7 +147,6 @@ var hoverHandler = function(poemLineNumber){
 	function incrementNextPoemLine(){	
 		lineNumber++;
 		style = shadeColor(style, +100)
-		console.log(style)
 
 		if( (lineNumber) ===  numberOfPoems ){
 			lineNumber = 0;
@@ -166,14 +165,30 @@ var hoverHandler = function(poemLineNumber){
 
 /*
 	init function is called as soon as page is loaded, 
-	hides certain elements, adds an event listener to two
-	buttons, add poem and submit poems
+	hides certain elements, adds an event listener to three
+	buttons, add poem, submit poems, and reset poems
 */
 function init(){
 	//hide the poem display
 	$("#poem-lines, #poem-lines-wrapper").hide();
 	
 	let poem = document.getElementById('poem-writing');
+	resetPoems.addEventListener("click", () => {
+		submittedPoems = [];
+		numberOfPoems = 0;
+		poems = [];
+
+		$("#poem-lines-wrapper").fadeOut(1000, function(){
+			$("#poem-input").fadeIn(1000, function(){
+				//once all animations are complete
+				//remove span elements
+				while(poemLinesWrapper.firstChild){
+					poemLinesWrapper.removeChild(poemLinesWrapper.firstChild);
+				}
+			});
+		});
+	});
+	
 	
 	addAnotherPoemBtn.addEventListener("click", () => {
 		submittedPoems.push(poem.value);
@@ -193,6 +208,8 @@ function init(){
 	});
 	
 }
+
+
 
 
 init();
