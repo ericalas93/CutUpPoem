@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript"></script>
     <style type="text/css">
-    	.push-around
+    .push-around
         {
             margin: 5px;
         }   
@@ -20,25 +20,36 @@
         }
         #poem-lines
         {
+            text-align: center;
+        }
+        .float-center
+        {
+	        width: 80%;
+	        margin-left: 10%;
 	        text-align: center;
         }
         
+        .float-center-small
+        {
+	        width: 60%;
+	        margin-left: 20%;
+	        text-align: center;
+        }
         textarea
         {
-	        resize: none;
+            resize: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="panel panel-default margin-top">
+    <div class="panel panel-primary margin-top float-center">
         <div class="panel-heading">
             <h3 class="panel-title">Stir-fry Poem</h3>
         </div>
 
         <div class="panel-body">
-			Please use a space plus-sign space, " + ", to end a line in the text and begin a new one.
-
+            Please use a space plus-sign space, " + ", to end a line in the text and begin a new one.
 
             <div class="form-group col-md-6 col-md-offset-3 margin-top" id="poem-input">
                 <label for="name">Enter A Text:</label> 
@@ -51,16 +62,27 @@
                 <div class="panel-body">
                     <div id="poem-lines"></div>
                 </div>
-                <button type="button" id = "reset-poems" class="btn btn-danger pull-right push-around">Submit New Text</button>
+                <button type="button" id="reset-poems" class="btn btn-danger pull-right push-around">Submit New Text</button>
             </div>
+        </div>
+        
+        
+    </div>
+
+
+    <div class="panel panel-info float-center-small">
+        <div class="panel-heading">
+            <h3 class="panel-title">Sample Text</h3>
+        </div>
+
+        <div class="panel-body ">
+            Hey there + my name is + jonas mccoolster + whats yours?<br>
+			Greetings + i am called + james corvich + and your title is?<br>
+			Salutations + my birth name is + eric alas + its a pleasure to meet you...<br>
+			Hello there sailor + i am known as + usidore the blue + do you have a name?
         </div>
     </div>
     
-    
-    Hey there + my name is + jonas mccoolster + whats yours?<br>
-    Greetings + i am called + james corvich + and your title is?<br>
-    Salutations + my birth name is + eric alas + its a pleasure to meet you...<br>
-    Hello there sailor + i am known as + usidore the blue + do you have a name? 
     <script type="text/javascript" src="src/bundle.js">
 </script>
 </body>
