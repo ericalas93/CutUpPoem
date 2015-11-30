@@ -5,9 +5,26 @@ let resetPoems = document.getElementById('reset-poems');
 let addAnotherPoemBtn = document.getElementById('add-poem');
 let submitButton = document.getElementById('submit-poems');
 
+
+document.getElementById('clipboard').addEventListener("click", copyToClipboard, false);
+
 let submittedPoems = [];
 let numberOfPoems = 0;
 let poems = [];
+
+
+/*
+	Simple Function to copy to clipboard
+	Since clipboard.js requires the element to be visible to copy, 
+	we element in the DOM has been pushed outside of the screen and the user won't see it
+*/
+
+function copyToClipboard(){
+	let textContent = document.getElementById('poem-lines').textContent;
+	document.getElementById('copy-me').innerHTML = textContent;
+	new Clipboard('.clippy');
+
+}
 
 /*
 	This function takes all the submitted poems, splits them and stores them into a 1D array
@@ -99,9 +116,9 @@ function initilizePoems(){
 		poemLinesChildren[i].style.color = "#3f3f3f";
 		
 		if(poems[0][i] === undefined)
-			poemLinesChildren[i].innerHTML = "...";
+			poemLinesChildren[i].innerHTML = "... ";
 		else
-			poemLinesChildren[i].innerHTML = poems[0][i];
+			poemLinesChildren[i].innerHTML = poems[0][i] + " ";
 	}
 }
 
@@ -155,9 +172,9 @@ var hoverHandler = function(poemLineNumber){
 		
 		this.style.color = style;
 		if(poems[lineNumber][poemLine] ===  undefined)
-			this.innerHTML = '...'
+			this.innerHTML = '... '
 		else
-	 		this.innerHTML = poems[lineNumber][poemLine]
+	 		this.innerHTML = poems[lineNumber][poemLine] + " ";
 	}
 	
 	return incrementNextPoemLine;
@@ -171,6 +188,9 @@ var hoverHandler = function(poemLineNumber){
 function init(){
 	//hide the poem display
 	$("#poem-lines, #poem-lines-wrapper").hide();
+	
+	//copied clipboard popup init
+ 	$('#clipboard').popover();
 	
 	let poem = document.getElementById('poem-writing');
 	resetPoems.addEventListener("click", () => {

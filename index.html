@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="node_modules/clipboard/dist/clipboard.min.js"></script>
     <style type="text/css">
     .push-around
         {
@@ -27,6 +28,11 @@
 	        width: 80%;
 	        margin-left: 10%;
 	        text-align: center;
+        }
+        #copy-me
+        {
+	        position: absolute;
+	        top: -1000%;
         }
         
         .float-center-small
@@ -62,7 +68,22 @@
                 <div class="panel-body">
                     <div id="poem-lines"></div>
                 </div>
-                <button type="button" id="reset-poems" class="btn btn-danger pull-right push-around">Submit New Text</button>
+                
+				 <button 	type="button" 
+				 			class="btn btn-default btn-sm push-around clippy pull-right" 
+				 			id = "clipboard" 
+				 			data-clipboard-target="#copy-me"
+				 			data-container="body"  
+				 			data-trigger="focus"
+				 			data-placement="bottom" 
+				 			data-content="Copied!"
+				 			data-delay='{"show":"100"}'
+				 >
+				<span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy
+				</button>
+				<button type="button" id="reset-poems" class="btn btn-danger pull-right push-around">Submit New Text</button>
+
+				<p id = "copy-me"></p>
             </div>
         </div>
         
@@ -75,12 +96,13 @@
             <h3 class="panel-title">Sample Text</h3>
         </div>
 
-        <div class="panel-body ">
+        <div class="panel-body" id ="foo">
             Hey there + my name is + jonas mccoolster + whats yours?<br>
 			Greetings + i am called + james corvich + and your title is?<br>
 			Salutations + my birth name is + eric alas + its a pleasure to meet you...<br>
 			Hello there sailor + i am known as + usidore the blue + do you have a name?
         </div>
+        
     </div>
     
     <script type="text/javascript" src="src/bundle.js">

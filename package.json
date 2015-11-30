@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "babel-core": "^5.8.25",
-    "babelify-es6-polyfill": "^1.0.4"
+    "babelify-es6-polyfill": "^1.0.4",
+    "clipboard": "^1.5.5"
   }
 }
